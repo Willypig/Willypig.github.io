@@ -1,0 +1,57 @@
+.product-group{
+    width: 160px;
+    background-color:antiquewhite;
+    margin: 10px;
+    padding: 10px;
+}
+div img{
+    width: 160px;
+    margin: auto;
+}
+
+h2{
+    font-size: 16px;
+    
+    margin: 0px;
+}
+
+.star{
+    display: flex;
+    width: 15px;
+    padding: 3px;
+}
+.star .evaluate{
+    font-size: 10px;
+    color: gray;
+}
+
+section{
+    color: deeppink;
+    margin: 0px;
+}
+
+.price{
+    color:deeppink;
+    text-align: left;
+    font-size: 20px;
+}
+
+.price span{
+    font-size: 10px;
+}
+
+.stock{
+    font-size: 10px;
+}
+
+.icon .mark{
+    background-color:aqua;
+    display: flex;
+    width: 160px;
+}
+
+.mark img{
+    width: 25px;
+    border: 0px;
+}
+
