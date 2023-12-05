@@ -33,14 +33,18 @@
     display: flex;
 }
 
-/* .introduct:nth-child(even) .title{
+.group:nth-child(even) .title{
     flex-direction: row-reverse;
-} */
+}
 
 .title-number{
     writing-mode: vertical-lr;
     font-size: 100px;
     line-height: 0.8;
+}
+
+.group:nth-child(even) .title-number{
+    line-height: 0.7;
 }
 
 .title-text{
