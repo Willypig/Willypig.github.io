@@ -1,0 +1,125 @@
+.front-page{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family:微軟正黑體 ;
+    color: #052855;
+}
+
+.banner{
+    background-color:#F7F8F9 ;
+    text-align: center;
+    padding: 64px 40px;
+}
+.banner h1{
+    font-size: 32px;
+}
+
+.banner h2{
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.introduce{
+    display: flex;
+    padding: 0px 40px;
+    margin-top: 80px;
+    gap: 40px;
+}
+
+.introduce:nth-child(2){
+    flex-direction: row-reverse;
+}
+
+.text{
+    width: 55%;
+}
+
+.text h3{
+    font-size: 32px;
+}
+
+.text p{
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.text a{
+    text-decoration: none;
+    color: blue;
+}
+
+.icon p::after{
+    content: '→';
+    transition: .5s;
+    margin-left: 0;
+    color: blue;
+}
+
+.text p:hover::after{
+    margin-left: .5em;
+    font-size: 20px;
+}
+
+.text ul{
+    display: flex;
+    flex-wrap: wrap; 
+    margin: 30px 0px;
+    padding: 0;
+}
+
+.text li{
+    width:50%;
+    line-height: 40px;
+    list-style-position: inside;
+}
+
+ul li::marker{
+    color: blue;
+}
+
+.pic{
+    width: 45%;
+    margin: auto;
+}
+
+.pic img{
+    width:100% ;   
+}
+
+footer{
+    background-color: #F7F8F9 ;
+    text-align: center;
+    align-items: center;
+    margin-top: 60px;
+    padding: 30px 0px 60px 0px;
+}
+
+.footer-title{
+    font-size: 32px;
+}
+
+.footer-group{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-content{
+    width: 33%;
+    margin-top: 40px;
+}
+
+.footer-content img{
+    width: 100px;
+}
+
+.footer-content h5{
+    font-size: 22px;
+}
+
+.footer-content p{
+    width: 90%;
+    margin: auto;
+}
