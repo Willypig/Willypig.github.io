@@ -99,6 +99,12 @@
     left: 755px;
 }
 
+.group:nth-child(even) .pic .icon{
+    position: absolute;
+    top:230px;
+    left: -10px;
+}
+
 .innovation{
     width: 600px;
     background-color: rgb(211, 211, 211);
