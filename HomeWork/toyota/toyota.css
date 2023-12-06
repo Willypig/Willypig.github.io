@@ -11,7 +11,6 @@
 }
 
 .group{
-    height: 800PX; 
     display: flex;
     flex-wrap: wrap;
     position: relative;
@@ -113,7 +112,7 @@
     line-height: 1.5;
     font-size: 14px;
     position: relative;
-    top: 64px;
+    top: 78px;
     left: 40px;
 }
 
@@ -125,7 +124,7 @@
     line-height: 1.5;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 78px;
     left: 0px;
 }
 
