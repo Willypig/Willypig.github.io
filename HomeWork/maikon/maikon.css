@@ -338,7 +338,7 @@ p{
     width: 100px;
     height: 100px;
     position: relative;
-    top: 65px;
+    top: -10px;
     box-shadow: 0 0 50px #1fde8281;
     border-radius: 90%;
     padding: 0px;
@@ -370,7 +370,7 @@ p{
 .arrow3{
     position: absolute;
     top: 900px;
-    left: 320px;
+    left: 350px;
 }
 
 .arrow4{
