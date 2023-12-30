@@ -417,6 +417,21 @@ p{
     gap: 20px;
 }
 
+.project-content .project-test{
+    position: relative;
+}
+
+.project-content .down{
+    position: absolute;
+    top: 0;
+}
+
+.project .project-content .down:hover{
+    background-color: #1FDE82;
+    color: #FFFFFF;
+    transition: .3s;
+}
+
 .project-content .case{
     background-color: #FFFFFF;
     border-radius: 5%;
