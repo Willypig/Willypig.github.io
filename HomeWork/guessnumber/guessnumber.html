@@ -68,7 +68,7 @@
         give_up.disabled = true;
         give_up.addEventListener('click', () => {
             location.reload();
-        })
+        });
 
         //隨機產生4個不同的亂數
         function getRadom(min, max) {
@@ -76,13 +76,25 @@
             for (let i = 0; i < 4; i++) {
                 num[i] = Math.floor(Math.random() * (max - min + 1) + min);
                 for (let j = 0; j < i; j++) {
-                    if (num[i] == num[j]) {
+                    if (num[i] === num[j]) {
                         i--;
                     }
                 }
             }
             return number = num.join('');
-        }
+        };
+
+        //卡牌方式取亂數
+        // let number = generateAns();
+        // function generateAns(){
+        //     const numArr = [0,1,2,3,4,5,6,7,8,9];
+        //     numArr.sort((a,b)=>getRandomArbitrary(-1,1));
+        //     return numArr.slice(0,4).join('');
+        //     //return numArr.slice(0,4) //Array
+        // };
+        // function getRandomArbitrary(min,max){
+        //     return Math.random() * (max-min) +min;
+        // };
 
 
         const input = document.querySelector('input');
@@ -94,26 +106,32 @@
             let inputArr = input.value.split('');
             let numberArr = number.split('');
             //判斷數字長度是否符合規則
-            if (input.value.length != 4) {
+            if (input.value.length !== 4 || new Set(input.value).size !== 4) {
                 alert('請輸入四個不同的數字')
                 input.value = '';
             }
+
+            //正則表達式
+            // function isValidInput(input) {
+            //     const regex = /^(?!.*(\d).*\1)([0-9]){4}$/;
+            //     return regex.test(input);
+            // }
             //判斷四個數字是否有重複
-            else if (input.length == 4) {
-                for (let i = 0; i < 4; i++) {
-                    for (let j = 0; j < i; j++) {
-                        if (inputArr[i] == inputArr[j]) {
-                            alert('請輸入四個不同的數字')
-                            input.value = '';
-                        }
-                    }
-                }
-            }
+            // else if (input.length == 4) {
+            //     for (let i = 0; i < 4; i++) {
+            //         for (let j = 0; j < i; j++) {
+            //             if (inputArr[i] == inputArr[j]) {
+            //                 alert('請輸入四個不同的數字')
+            //                 input.value = '';
+            //             }
+            //         }
+            //     }
+            // }
             //判段符合規則之數字與答案的關係
             else {
-                if (input.value == number) {
+                if (input.value === number) {
                     for (let i = 0; i < numberArr.length; i++) {
-                        if (inputArr[i] == numberArr[i]) {
+                        if (inputArr[i] === numberArr[i]) {
                             a++;
                         }
                     }
@@ -136,13 +154,13 @@
                 }
                 else {
                     for (let i = 0; i < inputArr.length; i++) {
-                        if (inputArr[i] == numberArr[i]) {
+                        if (inputArr[i] === numberArr[i]) {
                             a++;
                         }
 
                         else {
                             for (let j = 0; j < numberArr.length; j++) {
-                                if (inputArr[i] == numberArr[j]) {
+                                if (inputArr[i] === numberArr[j]) {
                                     b++;
                                 }
                             }
@@ -170,8 +188,8 @@
             }
         });
 
-        input.addEventListener('keyup',() =>{
-            if( event.key === 'Enter'){
+        input.addEventListener('keyup', () => {
+            if (event.key === 'Enter') {
                 enter.click();
             }
         })
