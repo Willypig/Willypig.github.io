@@ -1,0 +1,32 @@
+.coontainer{
+    width: 960px;
+}
+
+button{
+    width: 100px;
+}
+
+.content .input-group{
+    padding: 50px;
+    outline: 1px solid grey;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: .5em;
+}
+
+.content-text{
+    width: 800px;
+    margin-right: 60px;
+}
+
+.input-group-text{
+    background-color: rgb(200, 200, 200);
+}
+
+.content-text .form-control{
+    background-color: rgb(220, 220, 220);
+}
+
+.edit{
+    margin: 0 10px;
+}

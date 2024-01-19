@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To do list</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="todolist.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="input">
+            <div class="input-group mt-5 mb-5 input-group-lg">
+                <input type="text" class="form-control" placeholder="todo..." aria-label="Recipient's username"
+                    aria-describedby="button-addon2" value="">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">新增</button>
+            </div>
+        </div>
+        <div class="content">
+            <!-- <div class="input-group">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="checkbox" value=""
+                        aria-label="Checkbox for following text input">
+                </div>
+                <div class="content-text">
+                    <input type="text" class="form-control" aria-label="Recipient's username with two button addons">
+                </div>
+                <div class="edit">
+                    <button class="btn bg-warning" type="button">編輯</button>
+                </div>
+                <div class="del">
+                    <button class="btn bg-danger" type="button">刪除</button>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-group-text">
+                    <input class="form-check-input mt-0" type="checkbox" value=""
+                        aria-label="Checkbox for following text input">
+                </div>
+                <div class="content-text">
+                    <input type="text" class="form-control" aria-label="Recipient's username with two button addons">
+                </div>
+                <div class="edit">
+                    <button class="btn bg-warning" type="button">編輯</button>
+                </div>
+                <div class="del">
+                    <button class="btn bg-danger" type="button">刪除</button>
+                </div>
+            </div>
+        </div> -->
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+
+        <script>
+
+            window.onload = function () {
+                restoreTasks();
+            };
+
+            const inputText = document.querySelector(".input .form-control");
+            const addBtn = document.querySelector('.input .btn');
+            const content = document.querySelector('.content')
+            const formControl = document.querySelector('.form-control');
+
+
+
+            addBtn.addEventListener('click', () => {
+                if (inputText.value !== '') {
+                    changeContent();
+                }
+                else {
+                    alert('請輸入內容!')
+                }
+            });
+
+            formControl.addEventListener('keyup', () => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    addBtn.click();
+                }
+            })
+
+            function createTaskElement(task, isChecked = false) {
+                let divInputGroup = document.createElement('div');
+                divInputGroup.setAttribute('class', 'input-group')
+                let divInputGroupText = document.createElement('div');
+                divInputGroupText.setAttribute('class', 'input-group-text');
+                let inputCheckBox = document.createElement('input');
+                inputCheckBox.setAttribute('class', 'form-check-input mt-0');
+                inputCheckBox.setAttribute('type', 'checkbox');
+                inputCheckBox.setAttribute('aria-label', 'Checkbox for following text input');
+                let divContentText = document.createElement('div');
+                divContentText.setAttribute('class', 'content-text');
+                let labelContentText = document.createElement('label')
+                labelContentText.setAttribute("type", "text");
+                labelContentText.setAttribute("class", "form-control");
+                labelContentText.setAttribute("aria-label", "Recipient's username with two button addons");
+                labelContentText.innerText = task;
+                let divEdit = document.createElement('div');
+                divEdit.setAttribute('class', 'edit');
+                let btnEdit = document.createElement('button');
+                btnEdit.setAttribute('class', 'btn bg-warning');
+                btnEdit.setAttribute('type', 'button');
+                btnEdit.innerText = '編輯'
+                let divDel = document.createElement('div');
+                divEdit.setAttribute('class', 'edit');
+                let btnEDel = document.createElement('button');
+                btnEDel.setAttribute('class', 'btn bg-danger');
+                btnEDel.setAttribute('type', 'button');
+                btnEDel.innerText = '刪除'
+                divInputGroupText.append(inputCheckBox);
+                divContentText.append(labelContentText);
+                divEdit.append(btnEdit);
+                divDel.append(btnEDel);
+                divInputGroup.append(divInputGroupText);
+                divInputGroup.append(divContentText);
+                divInputGroup.append(divEdit);
+                divInputGroup.append(divDel);
+                content.append(divInputGroup);
+
+                btnEDel.addEventListener('click', () => {
+                    divInputGroup.remove();
+                    saveTask();
+                })
+
+                btnEdit.addEventListener('click', () => {
+                    if (btnEdit.innerText === '編輯') {
+                        labelContentText.contentEditable = true; //內容轉換成可編輯
+                        btnEdit.innerText = '保存';
+                        btnEdit.setAttribute('class', 'btn bg-success');
+                        btnEdit.setAttribute('type', 'button');
+                        labelContentText.focus();
+                    }
+                    else {
+                        labelContentText.contentEditable = false;
+                        btnEdit.innerText = '編輯';
+                        btnEdit.setAttribute('class', 'btn bg-warning');
+                        btnEdit.setAttribute('type', 'button');
+                        if (labelContentText.innerText === '') {
+                            alert('請輸入內容!');
+                            location.reload();
+                        }
+                        else {
+                            saveTask();
+                        }
+                    }
+                });
+
+                inputCheckBox.checked = isChecked;
+                inputCheckBox.addEventListener('change', () => {
+                    saveTask();
+                });
+
+                return divInputGroup;
+            };
+
+            function saveTask() {
+                //獲取資料內容
+                const tasks = Array.from(document.querySelectorAll('.content .input-group')).map(taskEl => {
+                    const label = taskEl.querySelector('.content-text label');
+                    const isChecked = taskEl.querySelector('.form-check-input').checked;
+                    return { task: label.innerText, isChecked }
+                });
+
+                //將資料內容存入localStorage
+                localStorage.setItem('key', JSON.stringify(tasks));
+            };
+
+            function restoreTasks() {
+                //從localStorage叫出資料
+                const saveTasks = JSON.parse(localStorage.getItem('key'));
+
+                saveTasks.forEach(taskData => {
+                    const taskElement = createTaskElement(taskData.task, taskData.isChecked);
+                    content.appendChild(taskElement);
+                });
+            };
+
+            function changeContent() {
+                const taskElement = createTaskElement(inputText.value);
+                content.appendChild(taskElement);
+                //清空input
+                inputText.value = '';
+                saveTask();
+            };
+
+
+
+
+
+
+
+
+
+        </script>
+</body>
+
+</html>
