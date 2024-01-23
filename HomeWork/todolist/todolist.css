@@ -1,4 +1,4 @@
-.coontainer{
+.container{
     width: 960px;
 }
 
@@ -15,7 +15,7 @@ button{
 }
 
 .content-text{
-    width: 600px;
+    width: 500px;
     margin-right: 60px;
 }
 
